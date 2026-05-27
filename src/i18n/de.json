@@ -1,0 +1,107 @@
+{
+  "site": {
+    "name": "Greenleaf Digital",
+    "tagline": "Digitale Lösungen mit Leidenschaft",
+    "description": "Greenleaf Digital — Ihre Agentur für moderne Webprojekte."
+  },
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Leistungen",
+    "blog": "Blog",
+    "team": "Team",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "copyright": "© {year} Greenleaf Digital. Alle Rechte vorbehalten.",
+    "builtWith": "Gebaut mit passionfruit",
+    "privacy": "Datenschutz",
+    "imprint": "Impressum"
+  },
+  "cta": {
+    "contact": "Kontakt aufnehmen",
+    "readMore": "Weiterlesen",
+    "backToBlog": "Zurück zum Blog",
+    "backToTeam": "Zurück zum Team"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Neuigkeiten und Einblicke",
+    "publishedAt": "Veröffentlicht am {date}",
+    "author": "Von {name}",
+    "readMore": "Weiterlesen",
+    "noPosts": "Noch keine Beiträge."
+  },
+  "team": {
+    "title": "Unser Team",
+    "description": "Lernen Sie unser Team kennen."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Nehmen Sie Kontakt mit uns auf.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "send": "Absenden"
+    }
+  },
+  "error": {
+    "notFound": "Seite nicht gefunden",
+    "notFoundDescription": "Die gesuchte Seite existiert leider nicht.",
+    "backHome": "Zurück zur Startseite"
+  },
+  "cookie": {
+    "title": "Diese Website verwendet Cookies",
+    "description": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern und den Website-Traffic zu analysieren.",
+    "accept": "Alle akzeptieren",
+    "reject": "Ablehnen",
+    "preferences": "Einstellungen",
+    "necessary": "Notwendig",
+    "necessaryDescription": "Diese Cookies sind für die Grundfunktionen der Website erforderlich.",
+    "analytics": "Analyse",
+    "analyticsDescription": "Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen."
+  },
+  "home": {
+    "hero": {
+      "headline": "Digitale Lösungen mit Leidenschaft",
+      "subheadline": "Wir gestalten moderne Websites, die Ihr Unternehmen voranbringen.",
+      "cta": "Jetzt starten"
+    },
+    "features": {
+      "title": "Was wir bieten",
+      "subtitle": "Maßgeschneiderte digitale Lösungen für Ihr Unternehmen."
+    },
+    "testimonials": {
+      "title": "Was unsere Kunden sagen"
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen"
+    },
+    "ctaSection": {
+      "title": "Bereit für den nächsten Schritt?",
+      "subtitle": "Lassen Sie uns gemeinsam Ihre digitale Zukunft gestalten.",
+      "cta": "Kontakt aufnehmen"
+    }
+  },
+  "services": {
+    "title": "Unsere Leistungen",
+    "description": "Entdecken Sie unser Leistungsangebot.",
+    "webDesign": {
+      "title": "Webdesign",
+      "description": "Moderne, responsive Websites, die begeistern."
+    },
+    "development": {
+      "title": "Webentwicklung",
+      "description": "Technisch einwandfreie Lösungen mit modernsten Technologien."
+    },
+    "consulting": {
+      "title": "Beratung",
+      "description": "Strategische Beratung für Ihre digitale Transformation."
+    }
+  },
+  "about": {
+    "title": "Über uns",
+    "description": "Erfahren Sie mehr über Greenleaf Digital."
+  }
+}
