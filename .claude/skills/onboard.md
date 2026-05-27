@@ -91,4 +91,4 @@ Then tell the user:
 >
 > - Tell me to change the design, add content, or modify any page
 > - Run `pnpm build` to create a production build
-> - Deploy to Cloudflare Pages, Vercel, or Netlify (all free for static sites)"
+> - **Run `/deploy` to put your site online** (free Cloudflare Pages hosting, takes 5 minutes)"

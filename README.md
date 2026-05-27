@@ -16,6 +16,10 @@ personalized, production-grade website. No coding required.
 
 That's it. Your website is ready to customize.
 
+### Going Live
+
+When you're happy with your site, type `/deploy`. Claude walks you through connecting to Cloudflare Pages (free) — after that, every push to `main` automatically deploys your site.
+
 ---
 
 ## What You Get

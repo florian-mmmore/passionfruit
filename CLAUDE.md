@@ -131,18 +131,38 @@ Options: `--size` (1536x1024 for landscapes, 1024x1536 for portraits), `--qualit
 
 **Alt text** enforcement: `jsx-a11y/alt-text` is set to `error` (not warn) in the a11y ESLint config. Missing alt text on images blocks the build.
 
-## 14. Commands
+## 14. Deployment
 
-| Command                | Purpose                                                    |
-| ---------------------- | ---------------------------------------------------------- |
-| `pnpm dev`             | Local dev server                                           |
-| `pnpm build`           | Production build (sync + lint + typecheck + astro build)   |
-| `pnpm preview`         | Preview built output                                       |
-| `pnpm typecheck`       | `astro check` + `tsc --noEmit`                             |
-| `pnpm lint`            | ESLint + Prettier with autofix                             |
-| `pnpm lint:a11y`       | Accessibility lint (alt-text = error, rest = warn)         |
-| `pnpm test`            | Bilingual check unit tests                                 |
-| `pnpm check:spelling`  | Spell check content markdown (DE + EN)                     |
-| `pnpm check:links`     | Broken link check on built output                          |
-| `pnpm check:all`       | Spelling + a11y + build + link check (full CI locally)     |
-| `pnpm generate-image`  | Generate images via GPT Image (needs `OPENAI_API_KEY`)     |
+**Default host: Cloudflare Pages** (free, fast, automatic HTTPS). Run `/deploy` to set it up.
+
+**How it works:**
+
+- Push to `main` → GitHub Actions builds the site → deploys to Cloudflare Pages
+- CI workflow (`.github/workflows/ci.yml`) validates on PRs and pushes
+- Deploy workflow (`.github/workflows/deploy.yml`) builds and deploys on push to `main`
+- Manual deploy: Actions tab → Deploy → Run workflow
+
+**Required GitHub secrets/variables:**
+
+- `CLOUDFLARE_API_TOKEN` (secret) — from Cloudflare dashboard → API Tokens
+- `CLOUDFLARE_ACCOUNT_ID` (secret) — from Cloudflare dashboard sidebar
+- `CLOUDFLARE_PROJECT_NAME` (variable) — the Cloudflare Pages project name
+
+**Site URL:** Update `site` in `astro.config.mjs` after deployment. This affects canonical URLs, sitemap, and OG meta tags.
+
+## 15. Commands
+
+| Command               | Purpose                                                  |
+| --------------------- | -------------------------------------------------------- |
+| `pnpm dev`            | Local dev server                                         |
+| `pnpm build`          | Production build (sync + lint + typecheck + astro build) |
+| `pnpm preview`        | Preview built output                                     |
+| `pnpm typecheck`      | `astro check` + `tsc --noEmit`                           |
+| `pnpm lint`           | ESLint + Prettier with autofix                           |
+| `pnpm lint:a11y`      | Accessibility lint (alt-text = error, rest = warn)       |
+| `pnpm test`           | Bilingual check unit tests                               |
+| `pnpm check:spelling` | Spell check content markdown (DE + EN)                   |
+| `pnpm check:links`    | Broken link check on built output                        |
+| `pnpm check:all`      | Spelling + a11y + build + link check (full CI locally)   |
+| `pnpm generate-image` | Generate images via GPT Image (needs `OPENAI_API_KEY`)   |
+| `/deploy`             | Interactive Cloudflare Pages deployment setup            |
