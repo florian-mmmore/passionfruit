@@ -72,15 +72,6 @@ const pageTitle = title.includes('Greenleaf Digital') ? title : `${title} | Gree
 		{noindex && <meta name="robots" content="noindex,nofollow" />}
 		<link rel="canonical" href={canonicalUrl} />
 
-		<!-- Preload Inter Variable (latin subset, normal style, variable weight) -->
-		<link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href="/_astro/inter-latin-wght-normal.woff2"
-			crossorigin
-		/>
-
 		<!-- hreflang annotations -->
 		<link rel="alternate" hreflang="de" href={deUrl} />
 		<link rel="alternate" hreflang="en" href={enUrl} />

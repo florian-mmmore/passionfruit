@@ -7,7 +7,7 @@ export default [
   {
     files: ["**/*.astro"],
     rules: {
-      "astro/jsx-a11y/alt-text": "warn",
+      "astro/jsx-a11y/alt-text": "error",
       "astro/jsx-a11y/anchor-has-content": "warn",
       "astro/jsx-a11y/anchor-is-valid": "warn",
       "astro/jsx-a11y/aria-props": "warn",

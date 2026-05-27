@@ -121,15 +121,28 @@ Options: `--size` (1536x1024 for landscapes, 1024x1536 for portraits), `--qualit
 - Always end with "No text, no logos" unless text is wanted
 - Use `--size 1536x1024` for hero/banner images, `1024x1024` for square thumbnails
 
-## 13. Commands
+## 13. Quality tooling
 
-| Command               | Purpose                                                    |
-| --------------------- | ---------------------------------------------------------- |
-| `pnpm dev`            | Local dev server                                           |
-| `pnpm build`          | Production build (runs lint + typecheck + bilingual check) |
-| `pnpm preview`        | Preview built output                                       |
-| `pnpm typecheck`      | `astro check` + `tsc --noEmit`                             |
-| `pnpm lint`           | ESLint + Prettier with autofix                             |
-| `pnpm lint:a11y`      | Accessibility lint for `.astro` files                      |
-| `pnpm test`           | Bilingual check unit tests                                 |
-| `pnpm generate-image` | Generate images via GPT Image (needs `OPENAI_API_KEY`)     |
+**Commit hooks** (lefthook): pre-commit runs lint-staged (ESLint, Prettier, cspell on changed files) + bilingual check. Commit-msg runs commitlint (conventional commits: `feat:`, `fix:`, `chore:`, `docs:`).
+
+**Spell checker** (cspell): checks all markdown content in `src/content/`. German + English dictionaries loaded. Add unknown words to `project-words.txt`.
+
+**Link checker** (linkinator): runs against built `dist/` output after `astro build`. Catches broken internal links — pages referenced in nav or content that don't exist. Runs in CI after build.
+
+**Alt text** enforcement: `jsx-a11y/alt-text` is set to `error` (not warn) in the a11y ESLint config. Missing alt text on images blocks the build.
+
+## 14. Commands
+
+| Command                | Purpose                                                    |
+| ---------------------- | ---------------------------------------------------------- |
+| `pnpm dev`             | Local dev server                                           |
+| `pnpm build`           | Production build (sync + lint + typecheck + astro build)   |
+| `pnpm preview`         | Preview built output                                       |
+| `pnpm typecheck`       | `astro check` + `tsc --noEmit`                             |
+| `pnpm lint`            | ESLint + Prettier with autofix                             |
+| `pnpm lint:a11y`       | Accessibility lint (alt-text = error, rest = warn)         |
+| `pnpm test`            | Bilingual check unit tests                                 |
+| `pnpm check:spelling`  | Spell check content markdown (DE + EN)                     |
+| `pnpm check:links`     | Broken link check on built output                          |
+| `pnpm check:all`       | Spelling + a11y + build + link check (full CI locally)     |
+| `pnpm generate-image`  | Generate images via GPT Image (needs `OPENAI_API_KEY`)     |

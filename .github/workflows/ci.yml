@@ -23,10 +23,13 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm astro sync
       - uses: actions/cache/save@v4
         with:
-          path: node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+          path: |
+            node_modules
+            .astro
+          key: deps-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
 
   lint:
     needs: install
@@ -39,10 +42,28 @@ jobs:
           node-version-file: .nvmrc
       - uses: actions/cache/restore@v4
         with:
-          path: node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - run: pnpm astro sync
+          path: |
+            node_modules
+            .astro
+          key: deps-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
       - run: pnpm lint && pnpm lint:a11y
+
+  spelling:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            .astro
+          key: deps-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+      - run: pnpm check:spelling
 
   typecheck:
     needs: install
@@ -55,9 +76,10 @@ jobs:
           node-version-file: .nvmrc
       - uses: actions/cache/restore@v4
         with:
-          path: node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - run: pnpm astro sync
+          path: |
+            node_modules
+            .astro
+          key: deps-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
       - run: pnpm typecheck
 
   build:
@@ -71,6 +93,9 @@ jobs:
           node-version-file: .nvmrc
       - uses: actions/cache/restore@v4
         with:
-          path: node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+          path: |
+            node_modules
+            .astro
+          key: deps-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
       - run: pnpm build
+      - run: pnpm check:links

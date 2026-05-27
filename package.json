@@ -17,7 +17,25 @@
     "lint": "eslint --fix --cache --cache-location .cache/eslint . && prettier --write .",
     "lint:a11y": "eslint --config eslint.astro.config.mjs 'src/**/*.astro'",
     "test": "node --test scripts/check-bilingual.test.mjs",
-    "generate-image": "tsx scripts/generate-image.ts"
+    "check:spelling": "cspell \"src/content/**/*.md\" --no-progress",
+    "check:links": "linkinator ./dist --recurse --skip \"^(?!http://localhost)\" --verbosity error",
+    "check:all": "pnpm check:spelling && pnpm lint:a11y && pnpm build && pnpm check:links",
+    "generate-image": "tsx scripts/generate-image.ts",
+    "prepare": "lefthook install"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix --cache --cache-location .cache/eslint"
+    ],
+    "src/**/*.astro": [
+      "eslint --config eslint.astro.config.mjs"
+    ],
+    "src/content/**/*.md": [
+      "cspell --no-progress"
+    ],
+    "*.{ts,tsx,astro,css,json,md,mjs}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
@@ -33,16 +51,23 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "@cspell/dict-de-de": "^4.1.2",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.2.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/parser": "^8.59.1",
+    "cspell": "^10.0.0",
     "eslint": "^10.2.1",
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.5.0",
     "gray-matter": "^4.0.3",
+    "lefthook": "^2.1.8",
+    "linkinator": "^7.6.1",
+    "lint-staged": "^17.0.5",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.2.4",
     "tsx": "^4.22.3",

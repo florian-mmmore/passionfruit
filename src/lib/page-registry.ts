@@ -3,7 +3,14 @@ import type { Locale } from "~/i18n";
 
 export type { Locale };
 
-export type PageKey = "about" | "services" | "blog-index" | "team" | "contact";
+export type PageKey =
+  | "about"
+  | "services"
+  | "blog-index"
+  | "team"
+  | "contact"
+  | "privacy"
+  | "imprint";
 
 export type CollectionName = "blog" | "team" | "pages";
 
@@ -57,6 +64,16 @@ export const PAGES = [
     key: "contact" as const,
     slug: { de: "kontakt", en: "contact" },
     component: () => import("~/components/pages/contact.astro"),
+  },
+  {
+    key: "privacy" as const,
+    slug: { de: "datenschutz", en: "privacy" },
+    component: () => import("~/components/pages/privacy.astro"),
+  },
+  {
+    key: "imprint" as const,
+    slug: { de: "impressum", en: "imprint" },
+    component: () => import("~/components/pages/imprint.astro"),
   },
 ] satisfies PageEntry[];
 
