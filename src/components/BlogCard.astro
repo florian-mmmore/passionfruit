@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { Locale } from '~/i18n';
+import { getLocalizedPath } from '~/i18n';
+import { formatDate } from '~/lib/format-date';
+import { findPageByKey } from '~/lib/page-registry';
+import Badge from '~/components/Badge.astro';
+
+interface Props {
+	entry: CollectionEntry<'blog'>;
+	lang: Locale;
+}
+
+const { entry, lang } = Astro.props;
+
+const entrySlug = entry.id.slice(entry.id.indexOf('/') + 1);
+const parentSlug = findPageByKey('blog-index')?.slug[lang] ?? 'blog';
+const href = getLocalizedPath(`${parentSlug}/${entrySlug}`, lang);
+const formattedDate = formatDate(entry.data.publishedAt, lang);
+---
+
+<article class="card flex flex-col gap-4 transition-colors duration-[var(--transition-fast)] hover:border-accent/40">
+	{entry.data.heroImage && (
+		<a href={href} tabindex="-1" aria-hidden="true">
+			<Image
+				src={entry.data.heroImage}
+				alt={entry.data.title}
+				class="w-full h-48 object-cover rounded-[var(--radius-sm)]"
+				width={600}
+				height={300}
+			/>
+		</a>
+	)}
+
+	<div class="flex flex-col gap-3 flex-1">
+		{entry.data.tags.length > 0 && (
+			<div class="flex flex-wrap gap-2">
+				{entry.data.tags.map((tag) => (
+					<Badge>{tag}</Badge>
+				))}
+			</div>
+		)}
+
+		<h3 class="text-lg font-bold text-text-heading leading-snug">
+			<a href={href} class="hover:text-accent transition-colors duration-[var(--transition-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm">
+				{entry.data.title}
+			</a>
+		</h3>
+
+		<p class="text-muted text-sm leading-relaxed flex-1">{entry.data.description}</p>
+
+		<time datetime={entry.data.publishedAt.toISOString()} class="text-xs text-muted">
+			{formattedDate}
+		</time>
+	</div>
+</article>
