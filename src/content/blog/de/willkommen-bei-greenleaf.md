@@ -5,6 +5,7 @@ description: "Erfahren Sie, warum wir auf moderne Web-Technologien setzen und wi
 publishedAt: 2026-05-15
 author: "Anna Müller"
 tags: ["Unternehmen", "Webentwicklung"]
+heroImage: "../../../assets/blog/digital-transformation.png"
 featured: true
 ---
 

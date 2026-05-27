@@ -5,6 +5,7 @@ description: "Wie Claude Code die Art verändert, wie wir Websites erstellen und
 publishedAt: 2026-05-20
 author: "Max Schmidt"
 tags: ["KI", "Webentwicklung", "Claude Code"]
+heroImage: "../../../assets/blog/ai-websites.png"
 featured: false
 ---
 

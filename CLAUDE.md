@@ -101,14 +101,35 @@ Before committing:
 - [ ] New i18n strings added to both `de.json` and `en.json`
 - [ ] Changes align with STYLE_GUIDE.md
 
-## 12. Commands
+## 12. Image generation
 
-| Command          | Purpose                                                    |
-| ---------------- | ---------------------------------------------------------- |
-| `pnpm dev`       | Local dev server                                           |
-| `pnpm build`     | Production build (runs lint + typecheck + bilingual check) |
-| `pnpm preview`   | Preview built output                                       |
-| `pnpm typecheck` | `astro check` + `tsc --noEmit`                             |
-| `pnpm lint`      | ESLint + Prettier with autofix                             |
-| `pnpm lint:a11y` | Accessibility lint for `.astro` files                      |
-| `pnpm test`      | Bilingual check unit tests                                 |
+Generate images for blog heroes, page backgrounds, and assets using GPT Image models:
+
+```bash
+pnpm generate-image "your prompt here" -o src/assets/blog/my-image.png
+```
+
+**Requires `OPENAI_API_KEY` in `.env`.** The user must provide their own OpenAI API key. If the key is missing, the script will error with a clear message — prompt the user to add it.
+
+Options: `--size` (1536x1024 for landscapes, 1024x1536 for portraits), `--quality high`, `--background transparent` (png/webp only, not gpt-image-2), `--format` (png/jpeg/webp).
+
+**Prompt guidelines for good results:**
+
+- Be specific about composition, lighting, and mood
+- Reference a visual style ("editorial photography", "Kinfolk magazine", "minimal tech aesthetic")
+- Specify colors to match brand tokens (accent: #6366f1, dark: #1a1a2e)
+- Always end with "No text, no logos" unless text is wanted
+- Use `--size 1536x1024` for hero/banner images, `1024x1024` for square thumbnails
+
+## 13. Commands
+
+| Command               | Purpose                                                    |
+| --------------------- | ---------------------------------------------------------- |
+| `pnpm dev`            | Local dev server                                           |
+| `pnpm build`          | Production build (runs lint + typecheck + bilingual check) |
+| `pnpm preview`        | Preview built output                                       |
+| `pnpm typecheck`      | `astro check` + `tsc --noEmit`                             |
+| `pnpm lint`           | ESLint + Prettier with autofix                             |
+| `pnpm lint:a11y`      | Accessibility lint for `.astro` files                      |
+| `pnpm test`           | Bilingual check unit tests                                 |
+| `pnpm generate-image` | Generate images via GPT Image (needs `OPENAI_API_KEY`)     |

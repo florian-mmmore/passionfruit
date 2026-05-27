@@ -5,6 +5,7 @@ description: "Learn why we bet on modern web technologies and how we help busine
 publishedAt: 2026-05-15
 author: "Anna Müller"
 tags: ["Company", "Web Development"]
+heroImage: "../../../assets/blog/digital-transformation.png"
 featured: true
 ---
 

@@ -16,7 +16,8 @@
     "typecheck": "astro check --minimumSeverity warning && tsc --noEmit",
     "lint": "eslint --fix --cache --cache-location .cache/eslint . && prettier --write .",
     "lint:a11y": "eslint --config eslint.astro.config.mjs 'src/**/*.astro'",
-    "test": "node --test scripts/check-bilingual.test.mjs"
+    "test": "node --test scripts/check-bilingual.test.mjs",
+    "generate-image": "tsx scripts/generate-image.ts"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
@@ -44,6 +45,7 @@
     "gray-matter": "^4.0.3",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.2.4",
+    "tsx": "^4.22.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1"
   }

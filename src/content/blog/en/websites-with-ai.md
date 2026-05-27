@@ -5,6 +5,7 @@ description: "How Claude Code is changing the way we create and maintain website
 publishedAt: 2026-05-20
 author: "Max Schmidt"
 tags: ["AI", "Web Development", "Claude Code"]
+heroImage: "../../../assets/blog/ai-websites.png"
 featured: false
 ---
 

@@ -8,5 +8,5 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "exclude": ["dist", "eslint.config.mjs", "eslint.astro.config.mjs"]
+  "exclude": ["dist", "eslint.config.mjs", "eslint.astro.config.mjs", "scripts"]
 }
