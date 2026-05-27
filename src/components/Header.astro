@@ -31,19 +31,20 @@ function isActive(slug: string): boolean {
 }
 
 const isOnDark = variant === 'on-dark';
-const headerBg = isOnDark ? 'bg-surface-dark/80' : 'bg-surface/80';
+const headerBg = isOnDark ? 'bg-surface-dark/60' : 'bg-surface/80';
+const headerBorder = isOnDark ? 'border-white/5' : 'border-border/50';
 const logoTextColor = isOnDark ? 'text-text-on-dark' : 'text-text-heading';
 const navLinkBase = 'text-sm font-medium transition-colors duration-[var(--transition-fast)]';
 const navLinkInactive = isOnDark
-	? 'text-text-on-dark/70 hover:text-text-on-dark'
-	: 'text-text hover:text-text-heading';
+	? 'text-text-on-dark/60 hover:text-text-on-dark'
+	: 'text-muted hover:text-text-heading';
 const navLinkActive = isOnDark ? 'text-text-on-dark font-semibold' : 'text-accent font-semibold';
 const hamburgerColor = isOnDark ? 'text-text-on-dark' : 'text-text-heading';
 ---
 
 <header
 	id="site-header"
-	class={`sticky top-0 z-50 ${headerBg} backdrop-blur-lg border-b border-border/50`}
+	class={`sticky top-0 z-50 ${headerBg} backdrop-blur-xl backdrop-saturate-150 border-b ${headerBorder}`}
 >
 	<div class="container">
 		<div class="flex items-center justify-between h-16">
