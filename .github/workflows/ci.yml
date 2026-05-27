@@ -41,6 +41,7 @@ jobs:
         with:
           path: node_modules
           key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm astro sync
       - run: pnpm lint && pnpm lint:a11y
 
   typecheck:
@@ -56,6 +57,7 @@ jobs:
         with:
           path: node_modules
           key: modules-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm astro sync
       - run: pnpm typecheck
 
   build:
