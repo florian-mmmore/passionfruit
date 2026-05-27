@@ -102,6 +102,37 @@
   },
   "about": {
     "title": "About Us",
-    "description": "Learn more about Greenleaf Digital."
+    "description": "Learn more about Greenleaf Digital.",
+    "story": {
+      "eyebrow": "Our Story",
+      "title": "We believe everyone deserves a great website",
+      "text": "Greenleaf Digital was founded on a simple idea: professional web development should be accessible to everyone. We believe modern technologies and AI-powered workflows are changing the way websites are built — and that this change should benefit everyone."
+    },
+    "values": {
+      "eyebrow": "Our Values",
+      "title": "What drives us",
+      "quality": {
+        "title": "Quality over quantity",
+        "description": "Every project deserves the highest care. We don't do mass production — we deliver tailored solutions."
+      },
+      "transparency": {
+        "title": "Transparency",
+        "description": "Open communication at every project step. No hidden costs, no surprises."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We use the latest technologies — not for trend's sake, but because they deliver better results."
+      },
+      "accessibility": {
+        "title": "Accessibility",
+        "description": "Our websites are usable for everyone. Accessibility isn't a feature — it's the standard."
+      }
+    },
+    "stats": {
+      "projects": "Projects",
+      "satisfaction": "Client satisfaction",
+      "technologies": "Technologies",
+      "languages": "Languages"
+    }
   }
 }
