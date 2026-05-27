@@ -16,6 +16,7 @@ export default tseslint.config(
       "**/*.js",
       "**/*.cjs",
       "**/*.mjs",
+      "src/content.config.ts",
     ],
   },
   {
