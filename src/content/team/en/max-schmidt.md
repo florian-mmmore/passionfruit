@@ -4,6 +4,7 @@ name: "Max Schmidt"
 role: "Lead Developer"
 displayOrder: 2
 specializations: ["Frontend", "TypeScript", "Astro"]
+photo: "../../../assets/team/max.png"
 socials:
   github: "https://github.com/example"
 ---

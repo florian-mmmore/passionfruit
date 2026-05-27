@@ -1,10 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import type { Locale } from '~/i18n';
-import { useTranslations } from '~/i18n';
+import { useTranslations, getLocalizedPath } from '~/i18n';
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import PageContent from '~/components/PageContent.astro';
+import Button from '~/components/Button.astro';
 import { getAlternateCollectionSlug } from '~/lib/page-registry';
+import { ArrowRight } from '@lucide/astro';
 
 interface Props {
   lang: Locale;
@@ -16,13 +17,14 @@ const { t } = useTranslations(lang);
 
 const allPages = await getCollection('pages');
 const entry = allPages.find(
-  (p) => p.id.startsWith(`${lang}/`) && (p.data as { translationKey: string }).translationKey === 'about',
+  (p) => p.id.startsWith(`${lang}/`) && p.data.translationKey === 'about',
 );
 
 if (!entry) {
   return Astro.redirect('/404');
 }
 
+const { Content } = await render(entry);
 const alternateSlug = await getAlternateCollectionSlug(lang, 'pages', 'about');
 ---
 
@@ -32,6 +34,42 @@ const alternateSlug = await getAlternateCollectionSlug(lang, 'pages', 'about');
   lang={lang}
   currentSlug={currentSlug}
   alternateSlug={alternateSlug}
+  headerVariant="on-dark"
 >
-  <PageContent entry={entry} lang={lang} />
+  <section class="bg-surface-dark noise relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="glow-orb absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-warm/10 blur-[120px] translate-y-1/2"></div>
+    <div class="container relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
+      <p class="eyebrow hero-stagger" style="--delay: 100ms">{t('site.name')}</p>
+      <h1 class="text-h1 text-text-on-dark mt-4 max-w-2xl hero-stagger" style="--delay: 200ms">{entry.data.title}</h1>
+      <p class="text-body-lg text-text-on-dark/60 mt-4 max-w-lg hero-stagger" style="--delay: 300ms">{entry.data.description}</p>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28">
+    <div class="container">
+      <article class="blog-prose max-w-3xl mx-auto anim-slide-up">
+        <Content />
+      </article>
+      <div class="text-center mt-16 anim-fade">
+        <Button href={getLocalizedPath('team', lang)} variant="secondary" tone="on-light" class="group">
+          {t('navigation.team')}
+          <ArrowRight class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+        </Button>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  function initScrollAnimations() {
+    if (CSS.supports('animation-timeline: scroll()')) return;
+    const observer = new IntersectionObserver(
+      (entries) => { for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+    document.querySelectorAll('.anim-card-enter, .anim-slide-up, .anim-fade').forEach((el) => observer.observe(el));
+  }
+  initScrollAnimations();
+  document.addEventListener('astro:after-swap', initScrollAnimations);
+</script>

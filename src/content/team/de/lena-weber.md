@@ -4,6 +4,7 @@ name: "Lena Weber"
 role: "Designerin"
 displayOrder: 3
 specializations: ["UI/UX", "Branding"]
+photo: "../../../assets/team/lena.png"
 socials:
   website: "https://example.com"
 ---

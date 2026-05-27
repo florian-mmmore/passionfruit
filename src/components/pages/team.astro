@@ -24,15 +24,42 @@ const members = allMembers
   description={t('team.description')}
   lang={lang}
   currentSlug={currentSlug}
+  headerVariant="on-dark"
 >
-  <section class="container section">
-    <h1 class="text-4xl font-bold text-text-heading mb-4">{t('team.title')}</h1>
-    <p class="text-muted text-lg mb-12">{t('team.description')}</p>
+  <!-- Hero -->
+  <section class="bg-surface-dark noise relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="glow-orb absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full bg-accent/15 blur-[120px] -translate-y-1/2"></div>
+    <div class="container relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
+      <p class="eyebrow hero-stagger" style="--delay: 100ms">{t('site.name')}</p>
+      <h1 class="text-h1 text-text-on-dark mt-4 max-w-2xl hero-stagger" style="--delay: 200ms">{t('team.title')}</h1>
+      <p class="text-body-lg text-text-on-dark/60 mt-4 max-w-lg hero-stagger" style="--delay: 300ms">{t('team.description')}</p>
+    </div>
+  </section>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {members.map((member) => (
-        <TeamCard entry={member} lang={lang} />
-      ))}
+  <!-- Team grid -->
+  <section class="py-20 md:py-28">
+    <div class="container">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {members.map((member, i) => (
+          <div class="anim-card-enter" style={`--delay: ${i * 100}ms`}>
+            <TeamCard entry={member} lang={lang} />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  function initScrollAnimations() {
+    if (CSS.supports('animation-timeline: scroll()')) return;
+    const observer = new IntersectionObserver(
+      (entries) => { for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+    document.querySelectorAll('.anim-card-enter, .anim-slide-up, .anim-fade').forEach((el) => observer.observe(el));
+  }
+  initScrollAnimations();
+  document.addEventListener('astro:after-swap', initScrollAnimations);
+</script>

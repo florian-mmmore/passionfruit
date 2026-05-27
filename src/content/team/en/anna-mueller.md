@@ -4,6 +4,7 @@ name: "Anna Müller"
 role: "CEO & Founder"
 displayOrder: 1
 specializations: ["Strategy", "Digital Transformation"]
+photo: "../../../assets/team/anna.png"
 socials:
   linkedin: "https://linkedin.com/in/example"
 ---
