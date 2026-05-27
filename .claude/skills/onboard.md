@@ -12,6 +12,52 @@ This skill personalizes a fresh passionfruit template for a new website, or migr
 - User explicitly runs `/onboard`
 - Claude detects "Greenleaf Digital" placeholder text still present in the codebase
 
+## Prerequisites check
+
+Before anything else, verify the user's environment. Run these checks silently:
+
+```bash
+node --version    # Must be >= 24.0.0
+pnpm --version    # Must be installed
+git --version     # Must be installed
+```
+
+**If Node.js is missing or too old (< 24):**
+
+> "You need Node.js 24 or newer. The easiest way to install it:
+>
+> **Mac:** `brew install node` or download from https://nodejs.org
+> **Windows:** Download from https://nodejs.org
+> **Linux:** `curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash - && sudo apt-get install -y nodejs`
+>
+> After installing, restart your terminal and come back."
+
+**If pnpm is missing:**
+
+> "You need pnpm (our package manager). Install it with:
+>
+> `npm install -g pnpm`
+>
+> Or: `corepack enable && corepack prepare pnpm@latest --activate`"
+
+**If git is missing:**
+
+> "You need git for version control. Install it:
+>
+> **Mac:** `xcode-select --install`
+> **Windows:** Download from https://git-scm.com
+> **Linux:** `sudo apt-get install git`"
+
+**If all prerequisites are met:** proceed silently to Step 0. Don't tell the user "everything looks good" — just move on.
+
+Also verify that dependencies are installed:
+
+```bash
+ls node_modules/.package-lock.json 2>/dev/null || pnpm install
+```
+
+If `node_modules` doesn't exist, run `pnpm install` automatically before proceeding.
+
 ## Step 0: New site or migration?
 
 Ask the user:
@@ -87,8 +133,11 @@ Then tell the user:
 
 > "Your website is ready! Run `pnpm dev` to see it at http://localhost:4321.
 >
+> **One more thing** — the favicon and social preview image are still placeholders. Run `/brand` to set up your own logo and social sharing image.
+>
 > **What you can do next:**
 >
+> - **Run `/brand`** to replace the placeholder favicon and social sharing image with your own
 > - Tell me to change the design, add content, or modify any page
 > - Run `pnpm build` to create a production build
 > - **Run `/deploy` to put your site online** (free Cloudflare Pages hosting, takes 5 minutes)"

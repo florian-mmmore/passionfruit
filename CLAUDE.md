@@ -19,7 +19,7 @@ This is not optional. These files are the project's memory. If they drift from r
 
 ## 3. First-time setup
 
-If the site still shows "Greenleaf Digital", run `/onboard` to personalize it for your business.
+If the site still shows "Greenleaf Digital", run `/onboard` to personalize it for your business. After onboarding, run `/brand` to replace the placeholder favicon and social sharing image with your own logo.
 
 ## 4. Tech stack
 
@@ -165,4 +165,7 @@ Options: `--size` (1536x1024 for landscapes, 1024x1536 for portraits), `--qualit
 | `pnpm check:links`    | Broken link check on built output                        |
 | `pnpm check:all`      | Spelling + a11y + build + link check (full CI locally)   |
 | `pnpm generate-image` | Generate images via GPT Image (needs `OPENAI_API_KEY`)   |
+| `/brand`              | Replace placeholder favicon and OG image with your own   |
 | `/deploy`             | Interactive Cloudflare Pages deployment setup            |
+| `/new-post`           | Scaffold a bilingual blog post (DE + EN)                 |
+| `/new-team-member`    | Scaffold a bilingual team member entry (DE + EN)         |

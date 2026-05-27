@@ -39,11 +39,19 @@
   "contact": {
     "title": "Kontakt",
     "description": "Nehmen Sie Kontakt mit uns auf.",
+    "info": {
+      "email": "hello@example.com",
+      "phone": "+49 123 456 789",
+      "address": "Musterstraße 1, 12345 Musterstadt"
+    },
     "form": {
       "name": "Name",
       "email": "E-Mail",
       "message": "Nachricht",
-      "send": "Absenden"
+      "send": "Absenden",
+      "sending": "Wird gesendet...",
+      "success": "Vielen Dank! Ihre Nachricht wurde gesendet.",
+      "error": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
     }
   },
   "error": {
