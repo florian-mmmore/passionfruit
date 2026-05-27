@@ -31,8 +31,8 @@ function isActive(slug: string): boolean {
 }
 
 const isOnDark = variant === 'on-dark';
-const headerBg = isOnDark ? 'bg-surface-dark/60' : 'bg-surface/80';
-const headerBorder = isOnDark ? 'border-white/5' : 'border-border/50';
+const headerBg = isOnDark ? 'bg-transparent' : 'bg-surface/80';
+const headerBorder = isOnDark ? 'border-transparent' : 'border-border/50';
 const logoTextColor = isOnDark ? 'text-text-on-dark' : 'text-text-heading';
 const navLinkBase = 'text-sm font-medium transition-colors duration-[var(--transition-fast)]';
 const navLinkInactive = isOnDark
@@ -161,6 +161,28 @@ const hamburgerColor = isOnDark ? 'text-text-on-dark' : 'text-text-heading';
 		});
 	}
 
+	function initHeaderScroll() {
+		const header = document.getElementById('site-header');
+		if (!header || !header.classList.contains('bg-transparent')) return;
+
+		function update() {
+			if (window.scrollY > 80) {
+				header!.classList.replace('bg-transparent', 'bg-surface-dark/80');
+				header!.classList.replace('border-transparent', 'border-white/5');
+			} else {
+				header!.classList.replace('bg-surface-dark/80', 'bg-transparent');
+				header!.classList.replace('border-white/5', 'border-transparent');
+			}
+		}
+
+		window.addEventListener('scroll', update, { passive: true });
+		update();
+	}
+
 	initMobileMenu();
-	document.addEventListener('astro:after-swap', initMobileMenu);
+	initHeaderScroll();
+	document.addEventListener('astro:after-swap', () => {
+		initMobileMenu();
+		initHeaderScroll();
+	});
 </script>
