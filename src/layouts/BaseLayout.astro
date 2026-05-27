@@ -120,7 +120,7 @@ const pageTitle = title.includes('Greenleaf Digital') ? title : `${title} | Gree
 			variant={headerVariant}
 		/>
 
-		<main id="main-content">
+		<main id="main-content" class={headerVariant === 'on-dark' ? '-mt-16' : ''}>
 			<slot />
 		</main>
 
