@@ -6,11 +6,11 @@ import { useTranslations, getLocalizedPath } from '~/i18n';
 import { getTestimonials } from '~/data/testimonials';
 import { getFAQs } from '~/data/faqs';
 
-const lang = 'de' as const;
+const lang = 'en' as const;
 const { t } = useTranslations(lang);
 const testimonials = getTestimonials(lang);
 const faqItems = getFAQs(lang);
-const contactHref = getLocalizedPath('kontakt', lang);
+const contactHref = getLocalizedPath('contact', lang);
 ---
 
 <BaseLayout

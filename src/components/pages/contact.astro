@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import type { Locale } from '~/i18n';
+import { useTranslations } from '~/i18n';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageContent from '~/components/PageContent.astro';
+import Button from '~/components/Button.astro';
+import { getAlternateCollectionSlug } from '~/lib/page-registry';
+
+interface Props {
+  lang: Locale;
+  currentSlug: string;
+}
+
+const { lang, currentSlug } = Astro.props;
+const { t } = useTranslations(lang);
+
+const allPages = await getCollection('pages');
+const entry = allPages.find(
+  (p) => p.id.startsWith(`${lang}/`) && (p.data as { translationKey: string }).translationKey === 'contact',
+);
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+const alternateSlug = await getAlternateCollectionSlug(lang, 'pages', 'contact');
+---
+
+<BaseLayout
+  title={t('contact.title')}
+  description={t('contact.description')}
+  lang={lang}
+  currentSlug={currentSlug}
+  alternateSlug={alternateSlug}
+>
+  <PageContent entry={entry} lang={lang} />
+
+  <section class="container section pt-0">
+    <div class="max-w-xl mx-auto">
+      <form action="#" method="POST" class="flex flex-col gap-5">
+        <div class="flex flex-col gap-1.5">
+          <label for="name" class="text-sm font-semibold text-text-heading">
+            {t('contact.form.name')}
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class="w-full px-4 py-2.5 rounded-[var(--radius-sm)] border border-border bg-surface text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-[var(--transition-fast)]"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label for="email" class="text-sm font-semibold text-text-heading">
+            {t('contact.form.email')}
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="w-full px-4 py-2.5 rounded-[var(--radius-sm)] border border-border bg-surface text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-[var(--transition-fast)]"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label for="message" class="text-sm font-semibold text-text-heading">
+            {t('contact.form.message')}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows={6}
+            required
+            class="w-full px-4 py-2.5 rounded-[var(--radius-sm)] border border-border bg-surface text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-[var(--transition-fast)] resize-y"
+          ></textarea>
+        </div>
+
+        <Button type="submit" variant="primary">
+          {t('contact.form.send')}
+        </Button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

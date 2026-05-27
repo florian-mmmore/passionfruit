@@ -1,0 +1,60 @@
+---
+import '~/styles/global.css';
+import { useTranslations } from '~/i18n';
+
+const de = useTranslations('de');
+const en = useTranslations('en');
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — {de.t('error.notFound')} | Greenleaf Digital</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-surface min-h-screen flex flex-col">
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-24">
+
+      <!-- German section -->
+      <section class="w-full max-w-lg text-center mb-16" lang="de">
+        <p class="text-accent font-bold text-7xl mb-6" aria-hidden="true">404</p>
+        <h1 class="text-text-heading font-bold text-3xl mb-4">
+          {de.t('error.notFound')}
+        </h1>
+        <p class="text-muted text-lg mb-8 leading-relaxed">
+          {de.t('error.notFoundDescription')}
+        </p>
+        <a
+          href="/"
+          class="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-accent text-white font-semibold rounded-[var(--radius-button)] transition-colors duration-[var(--transition-fast)] hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        >
+          {de.t('error.backHome')}
+        </a>
+      </section>
+
+      <!-- Divider -->
+      <hr class="w-24 border-border mb-16" />
+
+      <!-- English section -->
+      <section class="w-full max-w-lg text-center" lang="en">
+        <p class="text-accent font-bold text-7xl mb-6" aria-hidden="true">404</p>
+        <h2 class="text-text-heading font-bold text-3xl mb-4">
+          {en.t('error.notFound')}
+        </h2>
+        <p class="text-muted text-lg mb-8 leading-relaxed">
+          {en.t('error.notFoundDescription')}
+        </p>
+        <a
+          href="/en/"
+          class="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-accent text-white font-semibold rounded-[var(--radius-button)] transition-colors duration-[var(--transition-fast)] hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        >
+          {en.t('error.backHome')}
+        </a>
+      </section>
+
+    </main>
+  </body>
+</html>
