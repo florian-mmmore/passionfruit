@@ -28,6 +28,7 @@ Ask these questions ONE AT A TIME using the AskUserQuestion tool:
 ## After answers
 
 Replace all "Greenleaf Digital" references with the company name across:
+
 - `src/i18n/de.json` and `src/i18n/en.json` (site.name, site.tagline, site.description, footer.copyright)
 - `src/lib/structured-data.ts` (ORGANIZATION_LD name)
 - `src/layouts/BaseLayout.astro` (title suffix)
@@ -38,6 +39,7 @@ Update `astro.config.mjs` site URL if provided.
 Update `global.css` accent color tokens (--color-accent, --color-accent-hover).
 
 Remove unused pages from:
+
 - `src/components/pages/` directory
 - `PAGES` array in `src/lib/page-registry.ts`
 - Navigation items in Header.astro and Footer.astro

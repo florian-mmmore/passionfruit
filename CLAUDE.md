@@ -23,17 +23,17 @@ If the site still shows "Greenleaf Digital", run `/onboard` to personalize it fo
 
 ## 4. Tech stack
 
-| Tool | Version / notes |
-|---|---|
-| Astro | 6, static output |
-| Tailwind | v4 via `@tailwindcss/vite` (theme in `src/styles/global.css` `@theme` block) |
-| TypeScript | strict — no `any`, ever |
-| Package manager | pnpm |
-| Icons | `@lucide/astro` (no emojis) |
-| Consent | vanilla-cookieconsent |
-| Analytics | PostHog (EU instance, env-var-gated) |
-| Font | Inter Variable (self-hosted via `@fontsource-variable/inter`) |
-| React | Dependency present; only use when interactivity genuinely demands it |
+| Tool            | Version / notes                                                              |
+| --------------- | ---------------------------------------------------------------------------- |
+| Astro           | 6, static output                                                             |
+| Tailwind        | v4 via `@tailwindcss/vite` (theme in `src/styles/global.css` `@theme` block) |
+| TypeScript      | strict — no `any`, ever                                                      |
+| Package manager | pnpm                                                                         |
+| Icons           | `@lucide/astro` (no emojis)                                                  |
+| Consent         | vanilla-cookieconsent                                                        |
+| Analytics       | PostHog (EU instance, env-var-gated)                                         |
+| Font            | Inter Variable (self-hosted via `@fontsource-variable/inter`)                |
+| React           | Dependency present; only use when interactivity genuinely demands it         |
 
 ## 5. Bilingual rule
 
@@ -69,6 +69,7 @@ See CONTRIBUTING.md for full details. Summary:
 **Read `STYLE_GUIDE.md` before touching any UI.** It is the single source of truth for colors, typography, buttons, cards, layout, and accessibility.
 
 Key rules:
+
 - No hex literals in components — use Tailwind tokens that map to `global.css` `@theme` values
 - Buttons use variant (primary / secondary / ghost) x tone (on-light / on-dark)
 - One card component per content type (BlogCard, TeamCard)
@@ -102,12 +103,12 @@ Before committing:
 
 ## 12. Commands
 
-| Command | Purpose |
-|---|---|
-| `pnpm dev` | Local dev server |
-| `pnpm build` | Production build (runs lint + typecheck + bilingual check) |
-| `pnpm preview` | Preview built output |
-| `pnpm typecheck` | `astro check` + `tsc --noEmit` |
-| `pnpm lint` | ESLint + Prettier with autofix |
-| `pnpm lint:a11y` | Accessibility lint for `.astro` files |
-| `pnpm test` | Bilingual check unit tests |
+| Command          | Purpose                                                    |
+| ---------------- | ---------------------------------------------------------- |
+| `pnpm dev`       | Local dev server                                           |
+| `pnpm build`     | Production build (runs lint + typecheck + bilingual check) |
+| `pnpm preview`   | Preview built output                                       |
+| `pnpm typecheck` | `astro check` + `tsc --noEmit`                             |
+| `pnpm lint`      | ESLint + Prettier with autofix                             |
+| `pnpm lint:a11y` | Accessibility lint for `.astro` files                      |
+| `pnpm test`      | Bilingual check unit tests                                 |

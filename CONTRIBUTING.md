@@ -12,14 +12,14 @@ Content workflows for the passionfruit template. All content is bilingual (DE + 
 
 ```yaml
 ---
-translationKey: my-post          # Same value in both locale files
+translationKey: my-post # Same value in both locale files
 title: "Post title"
 description: "Short description for meta tags and cards"
 publishedAt: 2026-01-15
 author: "Author Name"
 tags: ["tag1", "tag2"]
-featured: false                   # Optional, default false
-heroImage: "./_images/hero.jpg"   # Optional, relative to file
+featured: false # Optional, default false
+heroImage: "./_images/hero.jpg" # Optional, relative to file
 ---
 ```
 
@@ -38,10 +38,10 @@ Always create both `de/<slug>.md` and `en/<slug>.md` with matching `translationK
 translationKey: jane-doe
 name: "Jane Doe"
 role: "Lead Designer"
-displayOrder: 1                   # Lower = appears first
-specializations: ["UX", "Brand"]  # Optional, default []
-photo: "./_images/jane.jpg"       # Optional
-socials:                           # Optional
+displayOrder: 1 # Lower = appears first
+specializations: ["UX", "Brand"] # Optional, default []
+photo: "./_images/jane.jpg" # Optional
+socials: # Optional
   linkedin: "https://linkedin.com/in/janedoe"
   github: "https://github.com/janedoe"
   website: "https://janedoe.com"
@@ -61,11 +61,12 @@ socials:                           # Optional
 translationKey: about
 title: "About Us"
 description: "Learn more about our team and mission"
-heroImage: "./_images/about-hero.jpg"  # Optional
+heroImage: "./_images/about-hero.jpg" # Optional
 ---
 ```
 
 After creating a new page, also:
+
 1. Add a component in `src/components/pages/`
 2. Add an entry to the `PAGES` array in `src/lib/page-registry.ts` with `{ de, en }` slugs
 3. Add navigation items in Header and Footer if needed

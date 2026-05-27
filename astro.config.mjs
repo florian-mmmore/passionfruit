@@ -1,26 +1,29 @@
-import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
-import tailwindcss from '@tailwindcss/vite';
-import rehypeExternalLinks from 'rehype-external-links';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
+import rehypeExternalLinks from "rehype-external-links";
 
 export default defineConfig({
-  site: 'https://example.com',
-  output: 'static',
+  site: "https://example.com",
+  output: "static",
   compressHTML: true,
-  trailingSlash: 'always',
+  trailingSlash: "always",
   markdown: {
     rehypePlugins: [
-      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+      [
+        rehypeExternalLinks,
+        { target: "_blank", rel: ["noopener", "noreferrer"] },
+      ],
     ],
   },
   i18n: {
-    locales: ['de', 'en'],
-    defaultLocale: 'de',
+    locales: ["de", "en"],
+    defaultLocale: "de",
     routing: {
       prefixDefaultLocale: false,
     },
     fallback: {
-      en: 'de',
+      en: "de",
     },
   },
   integrations: [react()],

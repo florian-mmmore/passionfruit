@@ -4,14 +4,15 @@
  * Runner: pnpm exec node --test scripts/check-bilingual.test.mjs
  */
 
-import { describe, it, before, after } from 'node:test';
-import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
-import { tmpdir } from 'node:os';
+import { describe, it, before, after } from "node:test";
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
 
-const SCRIPT = new URL('../scripts/check-bilingual.mjs', import.meta.url).pathname;
+const SCRIPT = new URL("../scripts/check-bilingual.mjs", import.meta.url)
+  .pathname;
 
 /**
  * Creates a markdown file with the given translationKey in a collection/locale subdir.
@@ -32,31 +33,31 @@ function seedCollection(rootDir, collection, locale, slug, translationKey) {
 }
 
 function runScript(rootDir) {
-  return spawnSync('node', [SCRIPT, `--root=${rootDir}`], { encoding: 'utf8' });
+  return spawnSync("node", [SCRIPT, `--root=${rootDir}`], { encoding: "utf8" });
 }
 
 // ---------------------------------------------------------------------------
 // 1. All-balanced case
 // ---------------------------------------------------------------------------
-describe('all-balanced case', () => {
+describe("all-balanced case", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
-    seedCollection(tmpDir, 'blog', 'de', 'post-one', 'post-one');
-    seedCollection(tmpDir, 'blog', 'de', 'post-two', 'post-two');
-    seedCollection(tmpDir, 'blog', 'en', 'post-one', 'post-one');
-    seedCollection(tmpDir, 'blog', 'en', 'post-two', 'post-two');
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
+    seedCollection(tmpDir, "blog", "de", "post-one", "post-one");
+    seedCollection(tmpDir, "blog", "de", "post-two", "post-two");
+    seedCollection(tmpDir, "blog", "en", "post-one", "post-one");
+    seedCollection(tmpDir, "blog", "en", "post-two", "post-two");
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 0', () => {
+  it("exits 0", () => {
     const result = runScript(tmpDir);
     assert.equal(result.status, 0, `stderr: ${result.stderr}`);
   });
 
-  it('prints a balanced summary line for blog', () => {
+  it("prints a balanced summary line for blog", () => {
     const result = runScript(tmpDir);
     assert.match(result.stdout, /blog.*2\/2.*balanced/i);
   });
@@ -65,19 +66,19 @@ describe('all-balanced case', () => {
 // ---------------------------------------------------------------------------
 // 2. Missing EN case
 // ---------------------------------------------------------------------------
-describe('missing-EN case', () => {
+describe("missing-EN case", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
-    seedCollection(tmpDir, 'blog', 'de', 'welcome', 'welcome');
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
+    seedCollection(tmpDir, "blog", "de", "welcome", "welcome");
     // blog/en/ intentionally left empty (dir created but no files)
-    mkdirSync(join(tmpDir, 'blog', 'en'), { recursive: true });
+    mkdirSync(join(tmpDir, "blog", "en"), { recursive: true });
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 1', () => {
+  it("exits 1", () => {
     const result = runScript(tmpDir);
     assert.equal(result.status, 1, `stdout: ${result.stdout}`);
   });
@@ -94,18 +95,18 @@ describe('missing-EN case', () => {
 // ---------------------------------------------------------------------------
 // 3. Missing DE case
 // ---------------------------------------------------------------------------
-describe('missing-DE case', () => {
+describe("missing-DE case", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
-    mkdirSync(join(tmpDir, 'blog', 'de'), { recursive: true });
-    seedCollection(tmpDir, 'blog', 'en', 'about', 'about');
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
+    mkdirSync(join(tmpDir, "blog", "de"), { recursive: true });
+    seedCollection(tmpDir, "blog", "en", "about", "about");
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 1', () => {
+  it("exits 1", () => {
     const result = runScript(tmpDir);
     assert.equal(result.status, 1, `stdout: ${result.stdout}`);
   });
@@ -122,24 +123,24 @@ describe('missing-DE case', () => {
 // ---------------------------------------------------------------------------
 // 4. Duplicate translationKey case
 // ---------------------------------------------------------------------------
-describe('duplicate translationKey case', () => {
+describe("duplicate translationKey case", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
-    seedCollection(tmpDir, 'blog', 'de', 'file-a', 'dup-key');
-    seedCollection(tmpDir, 'blog', 'de', 'file-b', 'dup-key'); // same key!
-    seedCollection(tmpDir, 'blog', 'en', 'file-a', 'dup-key');
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
+    seedCollection(tmpDir, "blog", "de", "file-a", "dup-key");
+    seedCollection(tmpDir, "blog", "de", "file-b", "dup-key"); // same key!
+    seedCollection(tmpDir, "blog", "en", "file-a", "dup-key");
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 1', () => {
+  it("exits 1", () => {
     const result = runScript(tmpDir);
     assert.equal(result.status, 1, `stdout: ${result.stdout}`);
   });
 
-  it('names collection, locale, key, and both filenames', () => {
+  it("names collection, locale, key, and both filenames", () => {
     const result = runScript(tmpDir);
     const combined = result.stdout + result.stderr;
     assert.match(combined, /blog/);
@@ -153,23 +154,23 @@ describe('duplicate translationKey case', () => {
 // ---------------------------------------------------------------------------
 // 5. Missing translationKey field in frontmatter
 // ---------------------------------------------------------------------------
-describe('missing translationKey field', () => {
+describe("missing translationKey field", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
-    seedCollection(tmpDir, 'blog', 'de', 'no-key-file', null); // no translationKey
-    seedCollection(tmpDir, 'blog', 'en', 'paired', 'paired');
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
+    seedCollection(tmpDir, "blog", "de", "no-key-file", null); // no translationKey
+    seedCollection(tmpDir, "blog", "en", "paired", "paired");
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 1', () => {
+  it("exits 1", () => {
     const result = runScript(tmpDir);
     assert.equal(result.status, 1, `stdout: ${result.stdout}`);
   });
 
-  it('names the offending file in the output', () => {
+  it("names the offending file in the output", () => {
     const result = runScript(tmpDir);
     const combined = result.stdout + result.stderr;
     assert.match(combined, /no-key-file/);
@@ -179,18 +180,18 @@ describe('missing translationKey field', () => {
 // ---------------------------------------------------------------------------
 // 6. Empty collection case — both locales empty
 // ---------------------------------------------------------------------------
-describe('empty collection case', () => {
+describe("empty collection case", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
-    mkdirSync(join(tmpDir, 'events', 'de'), { recursive: true });
-    mkdirSync(join(tmpDir, 'events', 'en'), { recursive: true });
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
+    mkdirSync(join(tmpDir, "events", "de"), { recursive: true });
+    mkdirSync(join(tmpDir, "events", "en"), { recursive: true });
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 0', () => {
+  it("exits 0", () => {
     const result = runScript(tmpDir);
     assert.equal(result.status, 0, `stderr: ${result.stderr}`);
   });
@@ -205,23 +206,23 @@ describe('empty collection case', () => {
 // ---------------------------------------------------------------------------
 // 7. No content directory case
 // ---------------------------------------------------------------------------
-describe('no content directory case', () => {
+describe("no content directory case", () => {
   let tmpDir;
 
   before(() => {
-    tmpDir = mkdtempSync(join(tmpdir(), 'bilingual-test-'));
+    tmpDir = mkdtempSync(join(tmpdir(), "bilingual-test-"));
     // rootDir itself doesn't exist — pass a nonexistent subdir
   });
 
   after(() => rmSync(tmpDir, { recursive: true, force: true }));
 
-  it('exits 0', () => {
-    const result = runScript(join(tmpDir, 'nonexistent'));
+  it("exits 0", () => {
+    const result = runScript(join(tmpDir, "nonexistent"));
     assert.equal(result.status, 0, `stderr: ${result.stderr}`);
   });
 
   it('prints "no collections"', () => {
-    const result = runScript(join(tmpDir, 'nonexistent'));
+    const result = runScript(join(tmpDir, "nonexistent"));
     assert.match(result.stdout, /no collections/i);
   });
 });

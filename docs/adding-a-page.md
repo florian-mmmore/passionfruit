@@ -58,6 +58,7 @@ Use the existing entries as a pattern.
 Add translation keys in both locale files:
 
 **`src/i18n/de.json`**
+
 ```json
 "mypage": {
   "title": "Meine Seite — Firmenname",
@@ -68,6 +69,7 @@ Add translation keys in both locale files:
 ```
 
 **`src/i18n/en.json`**
+
 ```json
 "mypage": {
   "title": "My Page — Company Name",

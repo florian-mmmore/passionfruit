@@ -21,17 +21,17 @@ All colors are defined in `src/styles/global.css` under `@theme`. Use Tailwind u
 
 ### Core Tokens
 
-| Token | Hex | Purpose |
-|---|---|---|
-| `--color-surface` | `#ffffff` | Page background |
-| `--color-surface-dark` | `#1a1a2e` | Dark sections, footer |
-| `--color-text` | `#374151` | Body text |
-| `--color-text-heading` | `#111827` | Headings |
-| `--color-text-on-dark` | `#ffffff` | Text on dark backgrounds |
-| `--color-accent` | `#6366f1` | Primary accent (swappable via `/onboard`) |
-| `--color-accent-hover` | `#4f46e5` | Hover state |
-| `--color-border` | `#e5e7eb` | Borders, dividers |
-| `--color-muted` | `#6b7280` | Secondary text, captions, metadata |
+| Token                  | Hex       | Purpose                                   |
+| ---------------------- | --------- | ----------------------------------------- |
+| `--color-surface`      | `#ffffff` | Page background                           |
+| `--color-surface-dark` | `#1a1a2e` | Dark sections, footer                     |
+| `--color-text`         | `#374151` | Body text                                 |
+| `--color-text-heading` | `#111827` | Headings                                  |
+| `--color-text-on-dark` | `#ffffff` | Text on dark backgrounds                  |
+| `--color-accent`       | `#6366f1` | Primary accent (swappable via `/onboard`) |
+| `--color-accent-hover` | `#4f46e5` | Hover state                               |
+| `--color-border`       | `#e5e7eb` | Borders, dividers                         |
+| `--color-muted`        | `#6b7280` | Secondary text, captions, metadata        |
 
 ---
 
@@ -39,12 +39,12 @@ All colors are defined in `src/styles/global.css` under `@theme`. Use Tailwind u
 
 **Inter Variable** for everything — headings and body. Self-hosted via `@fontsource-variable/inter`.
 
-| Element | Weight | Line-height | Notes |
-|---|---|---|---|
-| Headings (h1-h3) | 700 | 1.2 | `--font-heading` |
-| Body | 400 | 1.6 | `--font-body` |
-| Buttons | 600 | — | `font-semibold` |
-| Captions / metadata | 400 | 1.4 | `text-muted` color |
+| Element             | Weight | Line-height | Notes              |
+| ------------------- | ------ | ----------- | ------------------ |
+| Headings (h1-h3)    | 700    | 1.2         | `--font-heading`   |
+| Body                | 400    | 1.6         | `--font-body`      |
+| Buttons             | 600    | —           | `font-semibold`    |
+| Captions / metadata | 400    | 1.4         | `text-muted` color |
 
 - Sentence case throughout — no ALL CAPS except eyebrow labels
 - Eyebrow labels: `text-sm uppercase tracking-wide text-muted font-medium`
@@ -55,11 +55,11 @@ All colors are defined in `src/styles/global.css` under `@theme`. Use Tailwind u
 
 Variant (primary / secondary / ghost) x tone (on-light / on-dark).
 
-| Variant | On light | On dark |
-|---|---|---|
-| Primary | Accent bg, white text | Accent bg, white text |
-| Secondary | Border + transparent bg, accent text | White/15 bg, white text |
-| Ghost | No border, accent text, underline hover | No border, white/75 text, underline hover |
+| Variant   | On light                                | On dark                                   |
+| --------- | --------------------------------------- | ----------------------------------------- |
+| Primary   | Accent bg, white text                   | Accent bg, white text                     |
+| Secondary | Border + transparent bg, accent text    | White/15 bg, white text                   |
+| Ghost     | No border, accent text, underline hover | No border, white/75 text, underline hover |
 
 ### Rules
 
@@ -104,12 +104,12 @@ One card component per content type. No multipurpose "Card" with 12 props.
 
 ### Responsive Breakpoints
 
-| Prefix | Width |
-|---|---|
+| Prefix | Width                       |
+| ------ | --------------------------- |
 | (none) | < 640px (mobile-first base) |
-| `sm:` | 640px |
-| `md:` | 768px |
-| `lg:` | 1024px |
+| `sm:`  | 640px                       |
+| `md:`  | 768px                       |
+| `lg:`  | 1024px                      |
 
 ### Grid Patterns
 
@@ -137,22 +137,27 @@ WCAG AA minimum.
 ## 7. Page Patterns
 
 ### Hero Section
+
 - Full-width, generous vertical padding
 - Eyebrow + headline + subtitle + dual CTA
 
 ### Feature Grid
+
 - Centered section heading (eyebrow + h2 + subtitle)
 - 2-3 column grid of cards with icons
 
 ### Testimonials
+
 - Quote text, attribution (name + role), optional photo
 - Subtle card or blockquote styling
 
 ### CTA Section
+
 - Dark background, bold headline, subtitle, dual buttons
 - Used as page closer before footer
 
 ### FAQ Accordion
+
 - `<details>` / `<summary>` elements
 - Border, rounded corners, chevron rotates on open
 

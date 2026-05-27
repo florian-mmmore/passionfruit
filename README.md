@@ -32,11 +32,11 @@ That's it. Your website is ready to customize.
 
 ## Why Not WordPress?
 
-| | passionfruit | WordPress |
-|---|---|---|
-| **Speed** | Static site = instant page loads | Dynamic rendering, plugins slow it down |
-| **Security** | No PHP, no plugins, no attack surface | Constant patching, plugin vulnerabilities |
-| **Cost** | Host for free on Cloudflare Pages, Vercel, or Netlify | Hosting, themes, and plugins add up |
+|               | passionfruit                                                       | WordPress                                   |
+| ------------- | ------------------------------------------------------------------ | ------------------------------------------- |
+| **Speed**     | Static site = instant page loads                                   | Dynamic rendering, plugins slow it down     |
+| **Security**  | No PHP, no plugins, no attack surface                              | Constant patching, plugin vulnerabilities   |
+| **Cost**      | Host for free on Cloudflare Pages, Vercel, or Netlify              | Hosting, themes, and plugins add up         |
 | **AI-native** | Claude Code understands every file, can modify anything on request | Locked behind admin panels and plugin walls |
 
 ---
