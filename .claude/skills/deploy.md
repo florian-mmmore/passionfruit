@@ -176,6 +176,7 @@ permissions:
 
 jobs:
   deploy:
+    if: ${{ vars.CLOUDFLARE_PROJECT_NAME != '' }}
     runs-on: ubuntu-latest
     environment:
       name: production
