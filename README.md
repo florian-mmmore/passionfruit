@@ -35,16 +35,16 @@ That's it. Claude asks about your business, sets up your site, and hands you a w
 
 ## What You Get
 
-| | |
-|---|---|
-| **Bilingual** | German + English out of the box, with localized slugs and hreflang |
-| **Blog & Team** | Markdown-based content collections — type `/new-post` or `/new-team-member` |
-| **Modern Design** | Scroll-driven animations, glass effects, fluid typography, responsive |
-| **GDPR-Ready** | Cookie consent + PostHog analytics (EU-hosted, env-var-gated) |
-| **Quality Gates** | ESLint, TypeScript strict, spell check (DE+EN), link checker, commit hooks |
-| **SEO** | Structured data, bilingual sitemap, Open Graph tags, canonical URLs |
-| **Accessible** | WCAG AA — semantic HTML, keyboard nav, alt-text enforcement, 44px touch targets |
-| **Self-Improving** | CLAUDE.md evolves as you work — Claude never forgets your preferences |
+|                    |                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **Bilingual**      | German + English out of the box, with localized slugs and hreflang              |
+| **Blog & Team**    | Markdown-based content collections — type `/new-post` or `/new-team-member`     |
+| **Modern Design**  | Scroll-driven animations, glass effects, fluid typography, responsive           |
+| **GDPR-Ready**     | Cookie consent + PostHog analytics (EU-hosted, env-var-gated)                   |
+| **Quality Gates**  | ESLint, TypeScript strict, spell check (DE+EN), link checker, commit hooks      |
+| **SEO**            | Structured data, bilingual sitemap, Open Graph tags, canonical URLs             |
+| **Accessible**     | WCAG AA — semantic HTML, keyboard nav, alt-text enforcement, 44px touch targets |
+| **Self-Improving** | CLAUDE.md evolves as you work — Claude never forgets your preferences           |
 
 ---
 
@@ -52,25 +52,25 @@ That's it. Claude asks about your business, sets up your site, and hands you a w
 
 Claude Code skills are interactive commands that guide you through tasks step by step.
 
-| Skill | What it does |
-|---|---|
-| `/onboard` | Personalize the template for your business (or migrate an existing site) |
-| `/brand` | Replace the placeholder favicon and social preview image |
-| `/deploy` | Set up Cloudflare Pages hosting (free, automatic HTTPS) |
-| `/new-post` | Create a bilingual blog post with correct frontmatter |
-| `/new-team-member` | Add a team member with photo and bio |
+| Skill              | What it does                                                             |
+| ------------------ | ------------------------------------------------------------------------ |
+| `/onboard`         | Personalize the template for your business (or migrate an existing site) |
+| `/brand`           | Replace the placeholder favicon and social preview image                 |
+| `/deploy`          | Set up Cloudflare Pages hosting (free, automatic HTTPS)                  |
+| `/new-post`        | Create a bilingual blog post with correct frontmatter                    |
+| `/new-team-member` | Add a team member with photo and bio                                     |
 
 ---
 
 ## Why Not WordPress?
 
-|  | passionfruit | WordPress |
-|---|---|---|
-| **Speed** | Static HTML — loads instantly | Dynamic PHP, plugins slow it down |
-| **Security** | No server, no plugins, no attack surface | Constant patching, plugin CVEs |
-| **Cost** | Free hosting (Cloudflare Pages) | Hosting + themes + plugins add up |
-| **AI-Native** | Claude reads every file, modifies anything | Locked behind admin panels |
-| **Updates** | Tell Claude what to change, in plain language | Navigate menus, hope plugins don't break |
+|               | passionfruit                                  | WordPress                                |
+| ------------- | --------------------------------------------- | ---------------------------------------- |
+| **Speed**     | Static HTML — loads instantly                 | Dynamic PHP, plugins slow it down        |
+| **Security**  | No server, no plugins, no attack surface      | Constant patching, plugin CVEs           |
+| **Cost**      | Free hosting (Cloudflare Pages)               | Hosting + themes + plugins add up        |
+| **AI-Native** | Claude reads every file, modifies anything    | Locked behind admin panels               |
+| **Updates**   | Tell Claude what to change, in plain language | Navigate menus, hope plugins don't break |
 
 ---
 

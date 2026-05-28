@@ -94,6 +94,18 @@ Ask these ONE AT A TIME using the AskUserQuestion tool:
 
 ## After answers
 
+**Strip framework metadata (safety net — the template-cleanup workflow normally handles this on first push):**
+
+```bash
+rm -f release-please-config.json
+rm -f .release-please-manifest.json
+rm -f .github/workflows/release.yml
+rm -f .github/workflows/template-cleanup.yml
+rm -f CHANGELOG.md
+```
+
+These files only apply to the passionfruit template itself. Derived projects don't release passionfruit-framework versions.
+
 Replace all "Greenleaf Digital" references with the company name across:
 
 - `src/i18n/de.json` and `src/i18n/en.json` (site.name, site.tagline, site.description, footer.copyright)
