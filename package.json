@@ -5,6 +5,18 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.28.0",
+  "author": {
+    "name": "PASSION4IT GmbH",
+    "email": "info@passion4it.de",
+    "url": "https://passion4it.de"
+  },
+  "homepage": "https://github.com/passion4it-gmbh/passionfruit",
+  "bugs": "https://github.com/passion4it-gmbh/passionfruit/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/passion4it-gmbh/passionfruit.git"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">=24.0.0"
   },
