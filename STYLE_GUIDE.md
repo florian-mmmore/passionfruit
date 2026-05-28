@@ -240,3 +240,21 @@ Icon container: `w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-cen
 | Blog detail hero | 3:2           | Faded behind dark gradient                      |
 | Team photo       | 4:3           | Object-cover object-top, hover zoom             |
 | OG image         | 1200×630      | Brand gradient + text                           |
+
+---
+
+## 10. Media embeds
+
+Third-party video and audio embeds load through **facade components** — a static poster + Play button, with the real iframe injected only on click. Two reasons:
+
+- **Privacy:** no third-party requests, cookies, or tracking pixels fire before user intent — nothing to consent-gate on a passive page view.
+- **Performance:** the heavy iframe and its sub-resources never touch the critical path; LCP stays a local image.
+
+### Rules
+
+- **Never embed YouTube, Spotify, Vimeo, etc. with a raw `<iframe>`.** Facades exist precisely to keep third-party connections gated behind user intent — bypassing them defeats both reasons above.
+- **`youtube-nocookie.com` is non-negotiable** for YouTube. Don't switch back to `youtube.com/embed` — it sets cookies before consent.
+- **CSP is scoped per provider** in `public/_headers`. Adding a new provider (Vimeo, SoundCloud, …) means a new facade **and** a CSP update for that provider's `frame-src`/`img-src`/`media-src` — never loosen the policy to "fix" a blocked embed in DevTools.
+- **Posters are local `ImageMetadata`**, not remote URLs — `astro:assets` optimizes them and serves from the same origin.
+
+Component usage (props, examples, locale wiring) lives in [`src/components/CLAUDE.md`](./src/components/CLAUDE.md) — Claude Code auto-loads it when working in that directory.
