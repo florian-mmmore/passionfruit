@@ -99,7 +99,39 @@ site: "https://<project-name>.pages.dev",
 
 If they have a custom domain, use that instead. This URL is used for canonical links, sitemap, and OG tags.
 
-## Step 6: Trigger first deploy
+## Step 6: Configure repo settings for the PR workflow
+
+passionfruit uses a PR-based workflow: open a PR → Cloudflare deploys a preview → review the preview → squash merge → production deploy. Configure the repo to enforce this.
+
+If the user has `gh` CLI, run these automatically:
+
+```bash
+gh repo edit \
+  --enable-squash-merge \
+  --enable-merge-commit=false \
+  --enable-rebase-merge=false \
+  --enable-auto-merge \
+  --delete-branch-on-merge \
+  --squash-merge-commit-title=PR_TITLE \
+  --squash-merge-commit-message=PR_BODY
+```
+
+Otherwise, guide them:
+
+> "Go to **Settings → General → Pull Requests** and:
+>
+> - ✅ Allow squash merging (default to 'Pull request title and description')
+> - ❌ Allow merge commits
+> - ❌ Allow rebase merging
+> - ✅ Automatically delete head branches
+>
+> Then **Settings → Branches → Add branch protection rule** for `main`:
+>
+> - ✅ Require a pull request before merging
+> - ✅ Require status checks to pass (the CI workflow)
+> - ✅ Require linear history"
+
+## Step 7: Trigger first deploy
 
 ```bash
 git add -A
@@ -115,9 +147,11 @@ Then check the deployment:
 > - **Cloudflare Dashboard**: https://dash.cloudflare.com/ → Workers & Pages → your project
 >
 > Once it's done (usually 1-2 minutes), your site will be live at:
-> `https://<project-name>.pages.dev`"
+> `https://<project-name>.pages.dev`
+>
+> **From now on:** never push directly to `main`. Create a branch, open a PR, and Cloudflare will deploy a preview URL (commented on the PR automatically). Squash-merge to ship to production."
 
-## Step 7: Custom domain (optional)
+## Step 8: Custom domain (optional)
 
 If the user wants to use their own domain:
 
@@ -148,53 +182,15 @@ After adding a custom domain, update `astro.config.mjs` with the custom domain U
 
 - Cloudflare Pages caches aggressively. Wait 1-2 minutes or purge cache in Cloudflare dashboard.
 
-**CI passes but deploy doesn't run:**
+**Deploy doesn't run on PR / no preview URL:**
 
-- Deploy only triggers on pushes to `main`, not on PRs
+- Deploy triggers on PRs against `main` AND pushes to `main`
+- Check that `CLOUDFLARE_PROJECT_NAME` variable is set (job is gated on it)
 - Check the workflow file exists at `.github/workflows/deploy.yml`
-- You can also manually trigger the deploy from Actions → Deploy → Run workflow
+- You can also manually trigger from Actions → Deploy → Run workflow
 
-## Deploy workflow template
+**Preview URL not commented on PR:**
 
-If `.github/workflows/deploy.yml` is missing, create it:
-
-```yaml
-name: Deploy
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: read
-  deployments: write
-
-jobs:
-  deploy:
-    if: ${{ vars.CLOUDFLARE_PROJECT_NAME != '' }}
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: ${{ steps.deploy.outputs.deployment-url }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      - name: Deploy to Cloudflare Pages
-        id: deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }}
+- The deploy job needs `pull-requests: write` permission (already set in template)
+- Check the "Comment preview URL on PR" step in the workflow logs
 ```

@@ -135,22 +135,48 @@ Options: `--size` (1536x1024 for landscapes, 1024x1536 for portraits), `--qualit
 
 **Default host: Cloudflare Pages** (free, fast, automatic HTTPS). Run `/deploy` to set it up.
 
-**How it works:**
-
-- Push to `main` → GitHub Actions builds the site → deploys to Cloudflare Pages
-- CI workflow (`.github/workflows/ci.yml`) validates on PRs and pushes
-- Deploy workflow (`.github/workflows/deploy.yml`) builds and deploys on push to `main`
-- Manual deploy: Actions tab → Deploy → Run workflow
-
 **Required GitHub secrets/variables:**
 
 - `CLOUDFLARE_API_TOKEN` (secret) — from Cloudflare dashboard → API Tokens
 - `CLOUDFLARE_ACCOUNT_ID` (secret) — from Cloudflare dashboard sidebar
 - `CLOUDFLARE_PROJECT_NAME` (variable) — the Cloudflare Pages project name
 
+The deploy job is gated on `CLOUDFLARE_PROJECT_NAME` being set — when unset, the deploy workflow shows as "skipped" instead of failing. This keeps the template green out of the box.
+
 **Site URL:** Update `site` in `astro.config.mjs` after deployment. This affects canonical URLs, sitemap, and OG meta tags.
 
-## 15. Commands
+## 15. Git workflow
+
+**Never push directly to `main`.** Every change goes through a pull request, even if it's just you.
+
+**The flow:**
+
+1. Create a branch: `git checkout -b feat/<short-name>`
+2. Make changes, commit (commitlint enforces conventional commits: `feat:`, `fix:`, `chore:`, `docs:`)
+3. Push: `git push -u origin feat/<short-name>`
+4. Open a PR: `gh pr create --fill` (or via GitHub UI)
+5. Wait for CI to pass and Cloudflare to deploy a preview — the preview URL is auto-commented on the PR
+6. Review the live preview (visit the URL from the PR comment)
+7. **Squash merge** when approved — this keeps `main` history linear and readable
+8. Push to `main` automatically triggers a production deploy
+
+**Why squash merge:** WIP commits ("fix typo", "address review") shouldn't pollute `main`. One PR = one logical change = one commit. The PR description becomes the commit message.
+
+**Repo settings to enable on GitHub:**
+
+- Settings → General → Pull Requests:
+  - ✅ Allow squash merging — default to "Pull request title and description"
+  - ❌ Allow merge commits
+  - ❌ Allow rebase merging
+  - ✅ Automatically delete head branches
+- Settings → Branches → Add branch protection rule for `main`:
+  - ✅ Require a pull request before merging
+  - ✅ Require status checks to pass (CI workflow)
+  - ✅ Require linear history
+
+**Preview deployments:** Every PR gets a unique preview URL like `https://<branch-name>.<project>.pages.dev`. Updates on every push to the branch. The bot comment on the PR is updated in place — no spam.
+
+## 16. Commands
 
 | Command               | Purpose                                                  |
 | --------------------- | -------------------------------------------------------- |
