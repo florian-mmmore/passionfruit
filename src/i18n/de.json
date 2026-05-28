@@ -143,6 +143,9 @@
       "languages": "Sprachen"
     }
   },
+  "legal": {
+    "lastUpdated": "Zuletzt aktualisiert:"
+  },
   "podcast": {
     "play": "{title} auf Spotify abspielen"
   },
