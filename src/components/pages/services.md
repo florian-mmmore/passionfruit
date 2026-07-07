@@ -33,7 +33,7 @@ Composes:
 - Three alternating service rows (inline, no sub-component): Palette / Code / Lightbulb icons from `@lucide/astro`, feature checklists with `<CheckCircle>` icons
 - Dark CTA strip with `<Button>` → contact page
 
-Service titles, descriptions, and feature bullet lists are hardcoded in the component (with inline `lang === "de"` branching for features). Titles and descriptions use i18n keys; feature strings are hardcoded per locale.
+Service titles, descriptions, and feature bullet lists all use i18n keys. Feature lists are stored as arrays in `de.json`/`en.json` and read via `tList("services.<key>.features")`.
 
 ## i18n keys
 
@@ -47,6 +47,9 @@ Service titles, descriptions, and feature bullet lists are hardcoded in the comp
 | `services.development.description` | Second service section body            |
 | `services.consulting.title`        | Third service section heading          |
 | `services.consulting.description`  | Third service section body             |
+| `services.webDesign.features`      | First service feature bullets (array)  |
+| `services.development.features`    | Second service feature bullets (array) |
+| `services.consulting.features`     | Third service feature bullets (array)  |
 | `home.ctaSection.title`            | CTA strip heading (shared with Home)   |
 | `home.ctaSection.subtitle`         | CTA strip subtext (shared with Home)   |
 | `cta.contact`                      | CTA button label                       |
@@ -55,7 +58,7 @@ Service titles, descriptions, and feature bullet lists are hardcoded in the comp
 ## Gotchas
 
 - **`heroImage` is optional.** Sourced from the `pages` collection entry with `translationKey: "services"`. When absent, the hero is single-column text. When present, a two-column grid is used.
-- **Service features are hardcoded.** The four bullet points under each service are inline arrays with `lang === "de"` branching — not i18n keys. To customize them, edit the component source directly.
+- **Service features live in i18n.** The bullet points under each service come from `services.<key>.features` arrays in `de.json`/`en.json`, read via `tList()`. Customize them there and keep DE/EN in sync.
 - **Three services are hardcoded.** Adding or removing services requires editing the `services` array in the component — there is no CMS-driven service collection.
 - **CTA heading reuses `home.ctaSection.*` keys.** This is intentional — the same copy is acceptable here. If services need a distinct CTA message, add new i18n keys and update both `de.json` and `en.json`.
 - **Bilingual page entry optional.** Unlike `contact` and legal pages, this template does not redirect on a missing page entry — the `heroImage` lookup just returns `undefined`. A missing entry is non-fatal.

@@ -136,15 +136,33 @@
     "description": "Entdecken Sie unser Leistungsangebot.",
     "webDesign": {
       "title": "Webdesign",
-      "description": "Moderne, responsive Websites, die begeistern."
+      "description": "Moderne, responsive Websites, die begeistern.",
+      "features": [
+        "Responsive Design",
+        "Markengerechte Gestaltung",
+        "UI/UX Optimierung",
+        "Barrierefreiheit (WCAG AA)"
+      ]
     },
     "development": {
       "title": "Webentwicklung",
-      "description": "Technisch einwandfreie Lösungen mit modernsten Technologien."
+      "description": "Technisch einwandfreie Lösungen mit modernsten Technologien.",
+      "features": [
+        "Astro & TypeScript",
+        "Blitzschnelle Ladezeiten",
+        "SEO-optimiert",
+        "Mehrsprachig"
+      ]
     },
     "consulting": {
       "title": "Beratung",
-      "description": "Strategische Beratung für Ihre digitale Transformation."
+      "description": "Strategische Beratung für Ihre digitale Transformation.",
+      "features": [
+        "Digitale Strategie",
+        "Technologie-Beratung",
+        "Workshop-Formate",
+        "KI-Integration"
+      ]
     }
   },
   "about": {

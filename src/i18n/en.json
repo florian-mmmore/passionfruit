@@ -136,15 +136,33 @@
     "description": "Discover our range of services.",
     "webDesign": {
       "title": "Web Design",
-      "description": "Modern, responsive websites that delight."
+      "description": "Modern, responsive websites that delight.",
+      "features": [
+        "Responsive design",
+        "Brand-aligned styling",
+        "UI/UX optimization",
+        "Accessibility (WCAG AA)"
+      ]
     },
     "development": {
       "title": "Web Development",
-      "description": "Technically excellent solutions with cutting-edge technologies."
+      "description": "Technically excellent solutions with cutting-edge technologies.",
+      "features": [
+        "Astro & TypeScript",
+        "Lightning-fast load times",
+        "SEO optimized",
+        "Multilingual"
+      ]
     },
     "consulting": {
       "title": "Consulting",
-      "description": "Strategic consulting for your digital transformation."
+      "description": "Strategic consulting for your digital transformation.",
+      "features": [
+        "Digital strategy",
+        "Technology consulting",
+        "Workshop formats",
+        "AI integration"
+      ]
     }
   },
   "about": {

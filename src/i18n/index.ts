@@ -17,10 +17,10 @@ type TranslationDict = { [k: string]: TranslationValue };
 
 const translations: Record<Locale, TranslationDict> = { de, en };
 
-function getNestedValue(
+function getNestedRaw(
   obj: TranslationDict,
   path: string,
-): string | undefined {
+): TranslationValue | undefined {
   const parts = path.split(".");
   let current: TranslationValue = obj;
 
@@ -37,7 +37,7 @@ function getNestedValue(
     }
   }
 
-  return typeof current === "string" ? current : undefined;
+  return current;
 }
 
 function interpolate(
@@ -52,9 +52,9 @@ function interpolate(
 
 export function useTranslations(locale: Locale) {
   function t(key: string, vars?: Record<string, string | number>): string {
-    const raw = getNestedValue(translations[locale], key);
+    const raw = getNestedRaw(translations[locale], key);
 
-    if (raw !== undefined) {
+    if (typeof raw === "string") {
       return vars ? interpolate(raw, vars) : raw;
     }
 
@@ -67,7 +67,20 @@ export function useTranslations(locale: Locale) {
     return `[missing: ${key}]`;
   }
 
-  return { t, locale };
+  function tList(key: string): string[] {
+    const raw = getNestedRaw(translations[locale], key);
+    if (Array.isArray(raw) && raw.every((v) => typeof v === "string")) {
+      return raw as string[];
+    }
+    if (import.meta.env.DEV) {
+      console.warn(
+        `[i18n] Missing or non-string-array list: "${key}" for locale "${locale}"`,
+      );
+    }
+    return [];
+  }
+
+  return { t, tList, locale };
 }
 
 export function getLocalizedPath(path: string, locale: Locale): string {

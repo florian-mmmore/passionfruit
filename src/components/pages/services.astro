@@ -20,7 +20,7 @@ interface Props {
 }
 
 const { lang, currentSlug } = Astro.props;
-const { t } = useTranslations(lang);
+const { t, tList } = useTranslations(lang);
 
 const alternateSlug = await getAlternateCollectionSlug(
   lang,
@@ -42,58 +42,19 @@ const services = [
     icon: Palette,
     titleKey: "services.webDesign.title",
     descKey: "services.webDesign.description",
-    features:
-      lang === "de"
-        ? [
-            "Responsive Design",
-            "Markengerechte Gestaltung",
-            "UI/UX Optimierung",
-            "Barrierefreiheit (WCAG AA)",
-          ]
-        : [
-            "Responsive design",
-            "Brand-aligned styling",
-            "UI/UX optimization",
-            "Accessibility (WCAG AA)",
-          ],
+    features: tList("services.webDesign.features"),
   },
   {
     icon: Code,
     titleKey: "services.development.title",
     descKey: "services.development.description",
-    features:
-      lang === "de"
-        ? [
-            "Astro & TypeScript",
-            "Blitzschnelle Ladezeiten",
-            "SEO-optimiert",
-            "Mehrsprachig",
-          ]
-        : [
-            "Astro & TypeScript",
-            "Lightning-fast load times",
-            "SEO optimized",
-            "Multilingual",
-          ],
+    features: tList("services.development.features"),
   },
   {
     icon: Lightbulb,
     titleKey: "services.consulting.title",
     descKey: "services.consulting.description",
-    features:
-      lang === "de"
-        ? [
-            "Digitale Strategie",
-            "Technologie-Beratung",
-            "Workshop-Formate",
-            "KI-Integration",
-          ]
-        : [
-            "Digital strategy",
-            "Technology consulting",
-            "Workshop formats",
-            "AI integration",
-          ],
+    features: tList("services.consulting.features"),
   },
 ];
 ---
