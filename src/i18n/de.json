@@ -13,6 +13,9 @@
     "team": "Team",
     "contact": "Kontakt"
   },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen"
+  },
   "footer": {
     "copyright": "© {year} Greenleaf Digital. Alle Rechte vorbehalten.",
     "builtWith": "Gebaut mit passionfruit",

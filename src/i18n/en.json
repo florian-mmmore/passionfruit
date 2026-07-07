@@ -13,6 +13,9 @@
     "team": "Team",
     "contact": "Contact"
   },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
   "footer": {
     "copyright": "© {year} Greenleaf Digital. All rights reserved.",
     "builtWith": "Built with passionfruit",

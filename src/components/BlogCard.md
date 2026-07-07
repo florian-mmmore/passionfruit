@@ -44,11 +44,11 @@ const posts = await getCollection("blog", ({ id }) =>
 
 ## i18n keys
 
-The component does not call `useTranslations`. The "Read more" / "Weiterlesen" label is hardcoded via an inline `lang === "de"` check, not a `t()` call.
+The "Read more" label is resolved via `useTranslations(lang)` and `t("blog.readMore")`. Date formatting uses `formatDate(date, lang)`.
 
-| Key              | Used for                                       |
-| ---------------- | ---------------------------------------------- |
-| _(none via `t`)_ | Date formatting uses `formatDate(date, lang)`. |
+| Key             | Used for                                    |
+| --------------- | ------------------------------------------- |
+| `blog.readMore` | The "Read more" / "Weiterlesen" link label. |
 
 ## Gotchas
 
